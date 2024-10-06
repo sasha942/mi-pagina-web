@@ -1,0 +1,185 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Cambia a Poppins para el cuerpo */
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(to right, #00A676, #0072CE);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: headerAnimation 3s ease-in-out infinite; /* Animación en el encabezado */
+}
+
+@keyframes headerAnimation {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    }
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif; /* Cambia a Montserrat para el encabezado */
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    animation: textFadeIn 2s ease-in-out; /* Animación de entrada */
+}
+
+@keyframes textFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px); /* Sube desde abajo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif; /* Cambia a Montserrat para el encabezado */
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    animation: textFadeIn 2s ease-in-out; /* Animación de entrada */
+}
+
+.services, .pricing, .hours, .contact {
+    background-color: #f9f9f9; /* Color de fondo unificado */
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centrado del texto */
+    animation: scaleUp 2s ease-in-out infinite alternate; /* Animación de escalado */
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.02); /* Aumenta ligeramente el tamaño */
+    }
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.service {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    background-color: #ffffff; /* Fondo blanco para las tarjetas de servicio */
+    position: relative;
+    animation: float 6s ease-in-out infinite; /* Animación de flotación */
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Flota hacia arriba */
+    }
+}
+
+.service img {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 150px; /* Tamaño fijo para las imágenes */
+    height: 150px; /* Tamaño fijo para las imágenes */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #0072CE;
+}
+
+.service p {
+    color: #555;
+}
+
+.contact a {
+    color: #00A676;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.contact .social-media a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #00A676;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #0072CE;
+    color: white;
+    border-radius: 10px;
+    animation: bounce 2s infinite; /* Animación de rebote para el footer */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.hours {
+    text-align: center;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 2s ease-in-out; /* Animación de entrada */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.hours h2 {
+    margin-bottom: 10px;
+}
+
+.hours p {
+    font-size: 1.2rem;
+}
