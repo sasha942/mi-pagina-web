@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gardi - Servicios Profesionales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --accent: #e74c3c;
+            --text: #2c3e50;
+            --light: #ecf0f1;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1920/1080') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .services {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 1rem;
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: left;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .schedule-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .schedule-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .schedule-list li:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Mejoras en las animaciones */
+        .service-card {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: scaleIn 1s ease forwards;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Animación para el hover de las cards */
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Mejoras en la responsividad del menú */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">GARDI</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Servicios Profesionales a tu Alcance</h1>
+            <p class="hero-subtitle">Soluciones personalizadas con compromiso y calidad</p>
+            <a href="#servicios" class="cta-button">Descubre Nuestros Servicios</a>
+        </div>
+    </section>
+
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1533234427049-9e9bb093186d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cuidado de Niños" class="service-image">
+                    <div class="service-content">
+                        <h3 class="service-title">Cuidado de Niños</h3>
+                        <p>Supervisión responsable y actividades creativas para el desarrollo de los pequeños.</p>
+                        <p class="service-price">S/ 10.00 - S/ 15.00 por hora</p>
+                    </div>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNsYXNlcyUyMHBhcnRpY3VsYXJlc3xlbnwwfHwwfHx8Mg%3D%3D" alt="Clases Particulares" class="service-image">
+                    <div class="service-content">
+                        <h3 class="service-title">Clases Particulares</h3>
+                        <p>Matemáticas, ofimática e informática con métodos personalizados.</p>
+                        <p class="service-price">S/ 10.00 - S/ 20.00 por hora</p>
+                    </div>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29wb3J0ZSUyMHRlY25pY298ZW58MHx8MHx8fDI%3D" alt="Configuración de Dispositivos" class="service-image">
+                    <div class="service-content">
+                        <h3 class="service-title">Soporte Técnico</h3>
+                        <p>Optimización y configuración profesional de dispositivos.</p>
+                        <p class="service-price">S/ 20.00 - S/ 30.00 por dispositivo</p>
+                    </div>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c29wb3J0ZSUyMHRlY25pY298ZW58MHx8MHx8fDI%3D" alt="Trabajos de Investigación" class="service-image">
+                    <div class="service-content">
+                        <h3 class="service-title">Trabajos de Investigación</h3>
+                        <p>Investigación profunda y documentación profesional.</p>
+                        <p class="service-price">S/ 30.00 - S/ 70.00 por trabajo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="services">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Contactos y Horario de Atención</h2>
+            <div class="contact-grid">
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-clock contact-icon"></i>
+                    <h3 class="contact-title">Horario de Atención</h3>
+                    <ul class="schedule-list">
+                        <li>
+                            <span class="schedule-day">Lunes a Viernes</span>
+                            <span>06:00 am - 04:00 pm</span>
+                        </li>
+                        <li>
+                            <span class="schedule-day">Domingo</span>
+                            <span>07:00 am - 10:00 pm</span>
+                        </li>
+                        <li>
+                            <span class="schedule-day">Sábado</span>
+                            <span>Cerrado</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <h3 class="contact-title">Correo Electrónico</h3>
+                    <a href="mailto:gdsasha2103@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope-open"></i>
+                        gdsasha2103@gmail.com
+                    </a>
+                </div>
+
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-whatsapp contact-icon"></i>
+                    <h3 class="contact-title">WhatsApp</h3>
+                    <a href="https://wa.me/982792343" target="_blank" class="contact-link">
+                        <i class="fab fa-whatsapp"></i>
+                        +51 982790343
+                    </a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                        Dale click para chatear directamente
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Gardi. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Inicializar AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Efecto de scroll en el header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        // Nuevo script para el menú móvil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
